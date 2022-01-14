@@ -19,4 +19,5 @@ app.post('/upload', function (req, res) {
     form.parse(req, function (err, fields, files) {
         console.log(files);
     });
+    res.send({ ok: 1 })
 });
