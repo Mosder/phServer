@@ -12,7 +12,6 @@ app.listen(PORT, function () {
 
 var formidable = require('formidable');
 app.post('/upload', function (req, res) {
-    console.log("amongas")
     res.setHeader("content-type", "application/json")
     let form = formidable({});
     form.multiples = true;
