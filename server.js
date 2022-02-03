@@ -24,5 +24,6 @@ app.post('/upload', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-    res.sendFile('index.html');
+    console.log('sus');
+    res.sendFile('page.html');
 });
