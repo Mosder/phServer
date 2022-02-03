@@ -1,5 +1,6 @@
 var express = require("express")
 var app = express()
+var path = require('path');
 const PORT = 3000;
 
 app.use(express.static('static'))
@@ -23,7 +24,22 @@ app.post('/upload', function (req, res) {
     res.send({ ok: 1 })
 });
 
-app.get('/', function (req, res) {
-    console.log('sus');
-    res.sendFile('page.html');
+app.get('/', async function (req, res) {
+    let files = await getFiles();
+    console.log(files);
+    res.sendFile(path.join(__dirname + '/static/page.html'));
 });
+
+const fs = require('fs').promises;
+const imgDir = path.join(__dirname + '/static/upload');
+
+async function getFiles() {
+    try {
+        const data = await fs.readdir(imgDir);
+        return data;
+    }
+    catch (err) {
+        console.log(err);
+        return err;
+    }
+}
