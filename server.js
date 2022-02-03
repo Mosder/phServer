@@ -2,13 +2,14 @@ var express = require("express")
 var app = express()
 const PORT = 3000;
 
+app.use(express.static('static'))
 app.use(express.urlencoded({
     extended: true
 }));
 
 app.listen(PORT, function () {
     console.log("start serwera na porcie " + PORT)
-})
+});
 
 var formidable = require('formidable');
 app.post('/upload', function (req, res) {
@@ -20,4 +21,8 @@ app.post('/upload', function (req, res) {
         console.log(files);
     });
     res.send({ ok: 1 })
+});
+
+app.get('/', function (req, res) {
+    res.sendFile('index.html');
 });
